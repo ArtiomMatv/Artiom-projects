@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Programming Portfolio - Home</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <!-- Use two fonts: one for headings, one for body -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <button id="theme-toggle">Toggle Theme</button>
+    </nav>
+  </header>
+  <main>
+    <!-- Hero Section with Pong Simulation Background -->
+    <section class="hero">
+      <canvas id="pongCanvas"></canvas>
+      <div class="hero-content">
+        <h1>Welcome to My Programming Portfolio</h1>
+        <p>Explore my projects and discover my skills in coding and software development.</p>
+        <a href="projects.html" class="btn">View Projects</a>
+      </div>
+    </section>
+    
+        <!-- Features Section -->
+        <section class="features">
+          <h2>Featured Skills</h2>
+          <div class="feature-container">
+            <div class="feature">
+              <i class="fas fa-code"></i>
+              <h3>Programming Languages</h3>
+              <p>Python, R, SQL, MATLAB</p>
+            </div>
+            <div class="feature">
+              <i class="fas fa-project-diagram"></i>
+              <h3>ML &amp; Data Tools</h3>
+              <p>TensorFlow, PyTorch, Scikit-learn, Keras, NumPy, Pandas, Matplotlib, Seaborn</p>
+            </div>
+            <div class="feature">
+              <i class="fas fa-laptop-code"></i>
+              <h3>Testing &amp; Debugging</h3>
+              <p>Unit Testing, Integration Testing, Debugging with PyCharm and VSCode</p>
+            </div>
+            <div class="feature">
+              <i class="fas fa-users"></i>
+              <h3>Soft Skills</h3>
+              <p>Problem-solving, Leadership, Communication, Multicultural</p>
+            </div>
+          </div>
+        </section>
+    
+        <!-- Achievements Section -->
+        <section class="achievements">
+          <div class="container">
+            <h2>My Achievements</h2>
+            <div class="counters">
+              <div class="counter">
+                <span class="count" data-target="25">0</span>
+                <p>Projects Completed</p>
+              </div>
+              <div class="counter">
+                <span class="count" data-target="5">0</span>
+                <p>Years of Experience</p>
+              </div>
+              <div class="counter">
+                <span class="count" data-target="1000">0</span>
+                <p>Happy Clients</p>
+              </div>
+            </div>
+          </div>
+        </section>
+    
+
+  </main>
+  <footer>
+    <!-- Minimal footer -->
+  </footer>
+  
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="js/main.js"></script>
+  
+  <!-- Updated Pong Simulation Script with occasional AI mistakes -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      const canvas = document.getElementById("pongCanvas");
+      const ctx = canvas.getContext("2d");
+
+      // Resize canvas to fill the hero section
+      function resizeCanvas() {
+        const heroSection = document.querySelector('.hero');
+        canvas.width = heroSection.offsetWidth;
+        canvas.height = heroSection.offsetHeight;
+      }
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+
+      // Game parameters
+      const paddleWidth = 10;
+      const paddleHeight = 80;
+      
+      // Initialize paddles at center vertically
+      let leftPaddle = { x: 20, y: canvas.height/2 - paddleHeight/2 };
+      let rightPaddle = { x: canvas.width - 20 - paddleWidth, y: canvas.height/2 - paddleHeight/2 };
+
+      // Set ball speed slower (3 instead of 4)
+      let ball = { x: canvas.width/2, y: canvas.height/2, radius: 8, vx: 4.2, vy: 4.2 };
+      let scoreLeft = 0, scoreRight = 0;
+
+      function draw() {
+        // Clear canvas with a dark background for contrast
+        ctx.fillStyle = "#222";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Draw paddles
+        ctx.fillStyle = "#fff";
+        ctx.fillRect(leftPaddle.x, leftPaddle.y, paddleWidth, paddleHeight);
+        ctx.fillRect(rightPaddle.x, rightPaddle.y, paddleWidth, paddleHeight);
+
+        // Draw ball
+        ctx.beginPath();
+        ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Draw score (subtle and low opacity)
+        ctx.font = "48px Roboto";
+        ctx.fillStyle = "rgba(255, 255, 255, 0.3)";
+        ctx.textAlign = "center";
+        ctx.fillText(`${scoreLeft} : ${scoreRight}`, canvas.width/2, 50);
+      }
+
+      function update() {
+        // Update ball position
+        ball.x += ball.vx;
+        ball.y += ball.vy;
+
+        // Bounce off top and bottom walls
+        if (ball.y - ball.radius < 0 || ball.y + ball.radius > canvas.height) {
+          ball.vy = -ball.vy;
+        }
+
+        // Collision with left paddle
+        if (ball.x - ball.radius < leftPaddle.x + paddleWidth &&
+            ball.y > leftPaddle.y &&
+            ball.y < leftPaddle.y + paddleHeight) {
+          ball.vx = -ball.vx;
+          ball.x = leftPaddle.x + paddleWidth + ball.radius;
+        }
+
+        // Collision with right paddle
+        if (ball.x + ball.radius > rightPaddle.x &&
+            ball.y > rightPaddle.y &&
+            ball.y < rightPaddle.y + paddleHeight) {
+          ball.vx = -ball.vx;
+          ball.x = rightPaddle.x - ball.radius;
+        }
+
+        // Update score if ball goes out of bounds and reset ball
+        if (ball.x - ball.radius < 0) {
+          scoreRight++;
+          resetBall();
+        }
+        if (ball.x + ball.radius > canvas.width) {
+          scoreLeft++;
+          resetBall();
+        }
+
+        // Paddle AI: Track ball when approaching, but with a 10% chance to "miss"
+        const paddleSpeed = 4;
+        // Left paddle
+        if (ball.vx < 0) { // Ball approaching left paddle
+          if (Math.random() < 0.9) {  // 90% chance to track
+            if (ball.y > leftPaddle.y + paddleHeight/2) {
+              leftPaddle.y += paddleSpeed;
+            } else if (ball.y < leftPaddle.y + paddleHeight/2) {
+              leftPaddle.y -= paddleSpeed;
+            }
+          }
+        } else { // Return to center
+          if (leftPaddle.y + paddleHeight/2 < canvas.height/2) {
+            leftPaddle.y += paddleSpeed/2;
+          } else if (leftPaddle.y + paddleHeight/2 > canvas.height/2) {
+            leftPaddle.y -= paddleSpeed/2;
+          }
+        }
+        // Right paddle
+        if (ball.vx > 0) { // Ball approaching right paddle
+          if (Math.random() < 0.9) {  // 90% chance to track
+            if (ball.y > rightPaddle.y + paddleHeight/2) {
+              rightPaddle.y += paddleSpeed;
+            } else if (ball.y < rightPaddle.y + paddleHeight/2) {
+              rightPaddle.y -= paddleSpeed;
+            }
+          }
+        } else { // Return to center
+          if (rightPaddle.y + paddleHeight/2 < canvas.height/2) {
+            rightPaddle.y += paddleSpeed/2;
+          } else if (rightPaddle.y + paddleHeight/2 > canvas.height/2) {
+            rightPaddle.y -= paddleSpeed/2;
+          }
+        }
+
+        // Constrain paddles within the canvas
+        leftPaddle.y = Math.max(0, Math.min(leftPaddle.y, canvas.height - paddleHeight));
+        rightPaddle.y = Math.max(0, Math.min(rightPaddle.y, canvas.height - paddleHeight));
+      }
+
+      function resetBall() {
+        ball.x = canvas.width / 2;
+        ball.y = canvas.height / 2;
+        // Randomize initial direction with slower speed
+        ball.vx = (Math.random() > 0.5 ? 4.2 : -4.2);
+        ball.vy = (Math.random() > 0.5 ? 4.2 : -4.2);
+      }
+
+      function loop() {
+        update();
+        draw();
+        requestAnimationFrame(loop);
+      }
+
+      loop();
+    });
+  </script>
+ 
+<!-- Floating Arrow Button -->
+  <button class="scroll-down" onclick="window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });">
+    <i class="fas fa-chevron-down"></i>
+  </button>
+
+
+</body>
+</html>

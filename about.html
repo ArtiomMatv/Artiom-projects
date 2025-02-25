@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Me - My Programming Portfolio</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700&display=swap" rel="stylesheet" />
+  <style>
+    /* Additional fancy inline styles for About Me page with fixed black text */
+    .about {
+      background: linear-gradient(135deg, #ffffff, #f0f0f0);
+      min-height: calc(100vh - 80px);
+      padding: 60px 20px;
+      animation: fadeIn 1s ease-out;
+    }
+    .about, .about h1, .about h2, .about p, .about a {
+      color: #000 !important;
+    }
+    .about h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3em;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .about-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+    }
+    .about-content img {
+      width: 250px;
+      border-radius: 50%;
+      border: 5px solid #000;
+      transition: transform 0.3s ease;
+    }
+    .about-content img:hover {
+      transform: scale(1.05);
+    }
+    .bio {
+      max-width: 600px;
+      text-align: left;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .bio p {
+      font-size: 1.2em;
+      line-height: 1.8;
+      margin-bottom: 25px;
+    }
+    .bio h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2em;
+      margin-top: 30px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #000;
+      padding-bottom: 10px;
+    }
+    .social-buttons {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .social-buttons a {
+      display: inline-block;
+      background: #ffffff;
+      color: #000000;
+      padding: 12px 25px;
+      border: 2px solid #000;
+      border-radius: 5px;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .social-buttons a:hover {
+      transform: scale(1.05);
+    }
+    /* Floating arrow to scroll to the bottom */
+    .scroll-down {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 2em;
+      color: #000;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .scroll-down:hover {
+      transform: translateX(-50%) scale(1.1);
+      opacity: 0.8;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <button id="theme-toggle">Toggle Theme</button>
+    </nav>
+  </header>
+  <main>
+    <section class="about">
+      <h1>About Me</h1>
+      <div class="about-content">
+        <img src="images/profile.jpg" alt="Profile Picture" />
+        <div class="bio">
+          <p>Hello! I'm [Your Name], a passionate programmer specializing in data science, web development, and software engineering. I thrive on solving complex challenges and crafting elegant solutions using Python, JavaScript, and modern frameworks.</p>
+          <p>My journey is driven by continuous learning, collaboration, and innovation. I believe in building scalable, reliable software while maintaining clean, maintainable code.</p>
+          <h2>Connect with Me</h2>
+          <div class="social-buttons">
+            <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+            <a href="https://leetcode.com/yourusername" target="_blank">LeetCode</a>
+            <a href="https://www.linkedin.com/in/yourusername" target="_blank">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- Floating Arrow Button -->
+  <button class="scroll-down" onclick="window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });">
+    <i class="fas fa-chevron-down"></i>
+  </button>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

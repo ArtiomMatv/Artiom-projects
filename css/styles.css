@@ -1,0 +1,570 @@
+/* ---------- Global Reset & Base Styles ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: background 0.5s, color 0.5s;
+  }
+  
+  /* ---------- Global CSS Variables (Light Theme) ---------- */
+  :root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --nav-bg: #ffffff;
+    --nav-text: #000000;
+    --btn-bg: #000000;
+    --btn-text: #ffffff;
+    --accent-color: #000000;
+    --overlay-color: rgba(0, 0, 0, 0.3);
+  }
+  
+  /* ---------- Dark Theme Overrides ---------- */
+  .dark-theme {
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --nav-bg: #000000;
+    --nav-text: #ffffff;
+    --btn-bg: #ffffff;
+    --btn-text: #000000;
+    --accent-color: #ffffff;
+    --overlay-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  /* ---------- Header & Navigation ---------- */
+  header {
+    background: var(--nav-bg);
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--accent-color);
+  }
+  
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    transition: opacity 0.5s;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: var(--nav-text);
+    font-size: 1em;
+    font-weight: 700;
+    transition: color 0.3s;
+  }
+  
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: var(--btn-bg);
+  }
+  
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .menu-toggle .bar {
+    height: 3px;
+    width: 25px;
+    background-color: var(--nav-text);
+    margin: 4px 0;
+    transition: 0.3s;
+  }
+  
+  #theme-toggle {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: 2px solid var(--nav-text);
+    color: var(--nav-text);
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  #theme-toggle:hover {
+    background: var(--btn-bg);
+    color: var(--btn-text);
+  }
+  
+  /* ---------- Responsive Navigation ---------- */
+  @media (max-width: 768px) {
+    .nav-links {
+      flex-direction: column;
+      position: absolute;
+      right: 0;
+      top: 60px;
+      background: var(--nav-bg);
+      width: 200px;
+      display: none;
+      text-align: center;
+      gap: 10px;
+      padding: 10px 0;
+      border: 1px solid var(--accent-color);
+    }
+    .nav-links.active {
+      display: flex;
+    }
+    .menu-toggle {
+      display: flex;
+    }
+  }
+  
+  /* ---------- Hero Section (General) ---------- */
+  .hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  /* Home Page Simulation Canvas (example: pongCanvas) */
+  #pongCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  
+  /* Dark overlay to ensure hero content is visible */
+  .hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+  
+  /* Hero content (used on Home page) - fixed in the center */
+  .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    color: #ffffff;
+    text-align: center;
+    padding: 30px 40px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    text-shadow: 0 3px 7px rgba(0, 0, 0, 0.8);
+    animation: fadeInUp 1s ease-out;
+  }
+  
+  .hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+  
+  .hero-content p {
+    font-size: 1.4em;
+    margin-bottom: 30px;
+    line-height: 1.5;
+  }
+  
+  /* ---------- Button Styling ---------- */
+  .btn {
+    display: inline-block;
+    background: var(--btn-bg);
+    color: var(--btn-text);
+    padding: 12px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.3s, opacity 0.3s;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+  
+  /* Ensure "View Projects" button is always white with black text */
+  .hero-content .btn {
+    background: #ffffff;
+    color: #000000;
+    padding: 15px 35px;
+    font-size: 1.2em;
+  }
+  
+  /* ---------- Features Section ---------- */
+  .features {
+    padding: 50px 20px;
+    text-align: center;
+    animation: fadeInUp 1s ease-out;
+  }
+  
+  .features h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--accent-color);
+    display: inline-block;
+    padding-bottom: 10px;
+  }
+  
+  .feature-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .feature {
+    background: var(--bg-color);
+    border: 1px solid var(--accent-color);
+    border-radius: 8px;
+    width: 300px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .feature:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .feature i {
+    font-size: 2.5em;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+  }
+  
+  /* ---------- Achievements Section ---------- */
+  .achievements {
+    padding: 50px 20px;
+    text-align: center;
+    animation: fadeInUp 1s ease-out;
+    background: var(--bg-color);
+  }
+  
+  .achievements h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--accent-color);
+    display: inline-block;
+    padding-bottom: 10px;
+  }
+  
+  .counters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+  }
+  
+  .counter {
+    font-size: 2em;
+    font-weight: bold;
+  }
+  
+  .counter p {
+    margin-top: 10px;
+    font-size: 1em;
+    font-weight: normal;
+  }
+  
+  /* ---------- Projects Page Specific Styles ---------- */
+  
+  /* Hero Section for Projects Page */
+  .projects-hero {
+    position: relative;
+    height: 60vh;
+    overflow: hidden;
+  }
+  
+  /* Canvas for Snake Simulation (now replaced by snake-chasing-food simulation) */
+  #snakeCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  
+  /* Dark overlay to ensure hero text remains clear */
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 2;
+  }
+  
+  /* Hero content for Projects Page */
+  .projects-hero .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    color: #ffffff;
+    text-align: center;
+    padding: 30px 40px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    text-shadow: 0 3px 7px rgba(0, 0, 0, 0.8);
+    animation: fadeInUp 1s ease-out;
+  }
+  
+  /* ---------- Container for Projects List ---------- */
+  .container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+  
+  .projects-list-section h2 {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--accent-color);
+    display: inline-block;
+    padding-bottom: 10px;
+  }
+  
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+  }
+  
+  .project-card {
+    background: var(--bg-color);
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .project-details {
+    padding: 20px;
+  }
+  
+  .project-details h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+  }
+  
+  .project-details p {
+    font-size: 0.95em;
+    margin-bottom: 20px;
+  }
+  
+  /* ---------- About Page ---------- */
+  .about {
+    padding: 50px 20px;
+    max-width: 1000px;
+    margin: auto;
+    animation: fadeInUp 1s ease-out;
+  }
+  
+  .about h1 {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8em;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--accent-color);
+    display: inline-block;
+    padding-bottom: 10px;
+  }
+  
+  .about-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .about-content img {
+    width: 250px;
+    border-radius: 50%;
+    border: 3px solid var(--accent-color);
+  }
+  
+  .bio {
+    max-width: 600px;
+  }
+  
+  .bio p {
+    font-size: 1em;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  
+  .bio h2 {
+    font-family: 'Playfair Display', serif;
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+  
+  .timeline {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .timeline li {
+    margin-bottom: 15px;
+    font-size: 0.95em;
+  }
+  
+  .timeline .date {
+    font-weight: bold;
+    margin-right: 10px;
+    color: var(--btn-bg);
+  }
+  
+  /* ---------- Contact Page ---------- */
+  .contact {
+    padding: 50px 20px;
+    max-width: 600px;
+    margin: auto;
+    animation: fadeInUp 1s ease-out;
+  }
+  
+  .contact h1 {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8em;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--accent-color);
+    display: inline-block;
+    padding-bottom: 10px;
+  }
+  
+  .contact p {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1em;
+  }
+  
+  #contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 10px;
+    border: 1px solid var(--accent-color);
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border 0.3s;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--btn-bg);
+    outline: none;
+  }
+  
+  /* ---------- Code Block Styling ---------- */
+  .code-block {
+    background: #2d2d2d;
+    color: #f8f8f2;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    margin-top: 15px;
+  }
+  
+  /* ---------- Footer ---------- */
+  footer {
+    text-align: center;
+    padding: 20px;
+    background: var(--nav-bg);
+    border-top: 1px solid var(--accent-color);
+  }
+  
+  /* ---------- Animations ---------- */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+/* Floating Arrow Button Styling */
+.scroll-down {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999; /* Increased z-index to ensure it appears on top */
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 2.5em;
+    color: var(--btn-bg); /* In light mode, this should be black */
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  
+  .scroll-down:hover {
+    transform: translateX(-50%) scale(1.1);
+    opacity: 0.8;
+  }
+  

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Programming Portfolio - Projects</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html" class="active">Projects</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <button id="theme-toggle">Toggle Theme</button>
+    </nav>
+  </header>
+  <main>
+    <!-- Hero Section with Snake Simulation Background -->
+    <section class="hero projects-hero">
+      <canvas id="snakeCanvas"></canvas>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Explore My Projects</h1>
+        <p>Dive into my collection of innovative projects that showcase my coding and design expertise.</p>
+      </div>
+    </section>
+    
+    <!-- Projects List Section -->
+    <section class="projects-list-section">
+      <div class="container">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+          <!-- Project Card 1 -->
+          <div class="project-card">
+            <div class="project-details">
+              <h3>House Price Prediction</h3>
+              <p>A machine learning pipeline that predicts house prices using robust data cleaning, feature engineering, and regression models.</p>
+              <a href="project1.html" class="btn">View Details</a>
+            </div>
+          </div>
+          <!-- Project Card 2 -->
+          <div class="project-card">
+            <div class="project-details">
+              <h3>Data Visualization Dashboard</h3>
+              <p>An interactive dashboard built with D3.js and Python, providing real-time analytics and stunning visualizations.</p>
+              <a href="project2.html" class="btn">View Details</a>
+            </div>
+          </div>
+          <!-- Project Card 3 -->
+          <div class="project-card">
+            <div class="project-details">
+              <h3>Interactive Web Application</h3>
+              <p>A full‑stack web application featuring dynamic user interfaces and responsive design to enhance user engagement.</p>
+              <a href="project3.html" class="btn">View Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <!-- Minimal footer -->
+  </footer>
+  
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="js/main.js"></script>
+  
+  <!-- Snake Simulation Script -->
+<!-- Updated Snake Simulation Script -->
+<!-- Updated Snake Simulation Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+      const canvas = document.getElementById("snakeCanvas");
+      const ctx = canvas.getContext("2d");
+      
+      function resizeCanvas() {
+        const heroSection = document.querySelector('.hero.projects-hero');
+        canvas.width = heroSection.offsetWidth;
+        canvas.height = heroSection.offsetHeight;
+      }
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+      
+      // Simulation parameters
+      const segmentSize = 15; // Diameter of each snake segment
+      const initialLength = 10; // Initial snake length (number of segments)
+      const snakeSpeed = 3; // Pixels per frame
+      let snake = [];
+      
+      // Initialize snake at canvas center (grid-aligned)
+      let startX = Math.floor(canvas.width / 2 / segmentSize) * segmentSize;
+      let startY = Math.floor(canvas.height / 2 / segmentSize) * segmentSize;
+      for (let i = 0; i < initialLength; i++) {
+        snake.push({ x: startX - i * segmentSize, y: startY });
+      }
+      
+      // Food items array
+      let foodItems = [];
+      function spawnFood() {
+        return {
+          x: Math.floor(Math.random() * (canvas.width - segmentSize)),
+          y: Math.floor(Math.random() * (canvas.height - segmentSize)),
+          radius: 7,
+          color: "#FF0000"  // Red food
+        };
+      }
+      // Spawn initial food items
+      for (let i = 0; i < 3; i++) {
+        foodItems.push(spawnFood());
+      }
+      
+      // Update snake: Chase the nearest food
+      function updateSnake() {
+        let head = snake[0];
+        let headCenter = { x: head.x + segmentSize/2, y: head.y + segmentSize/2 };
+        
+        // Find the nearest food item
+        let nearestFood = null;
+        let minDist = Infinity;
+        for (let food of foodItems) {
+          let foodCenter = { x: food.x + food.radius, y: food.y + food.radius };
+          let dx = foodCenter.x - headCenter.x;
+          let dy = foodCenter.y - headCenter.y;
+          let dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < minDist) {
+            minDist = dist;
+            nearestFood = food;
+          }
+        }
+        
+        // Set direction toward the nearest food
+        let dir = { x: 0, y: 0 };
+        if (nearestFood) {
+          let foodCenter = { x: nearestFood.x + nearestFood.radius, y: nearestFood.y + nearestFood.radius };
+          let dx = foodCenter.x - headCenter.x;
+          let dy = foodCenter.y - headCenter.y;
+          let mag = Math.sqrt(dx*dx + dy*dy);
+          if(mag !== 0) {
+            dir.x = dx / mag;
+            dir.y = dy / mag;
+          }
+        } else {
+          // Default direction (if no food found)
+          dir = { x: 1, y: 0 };
+        }
+        
+        // Compute new head position
+        let newHead = {
+          x: head.x + dir.x * snakeSpeed,
+          y: head.y + dir.y * snakeSpeed
+        };
+        
+        // Clamp new head within boundaries
+        if(newHead.x < 0) newHead.x = 0;
+        if(newHead.x > canvas.width - segmentSize) newHead.x = canvas.width - segmentSize;
+        if(newHead.y < 0) newHead.y = 0;
+        if(newHead.y > canvas.height - segmentSize) newHead.y = canvas.height - segmentSize;
+        
+        // Insert new head
+        snake.unshift(newHead);
+        
+        // Check collision with food (using center-to-center distance)
+        let ateFood = false;
+        for (let i = 0; i < foodItems.length; i++) {
+          let food = foodItems[i];
+          let foodCenter = { x: food.x + food.radius, y: food.y + food.radius };
+          let segCenter = { x: newHead.x + segmentSize/2, y: newHead.y + segmentSize/2 };
+          let dx = segCenter.x - foodCenter.x;
+          let dy = segCenter.y - foodCenter.y;
+          let distance = Math.sqrt(dx*dx + dy*dy);
+          if(distance < segmentSize/2 + food.radius) {
+            ateFood = true;
+            foodItems.splice(i, 1);
+            foodItems.push(spawnFood());
+            break;
+          }
+        }
+        
+        // If no food eaten, remove tail (maintain constant length)
+        if(!ateFood) {
+          snake.pop();
+        }
+      }
+      
+      function drawSnake() {
+        ctx.fillStyle = "#ff6666"; // Pleasing red for the snake
+        for (let segment of snake) {
+          ctx.beginPath();
+          ctx.arc(segment.x + segmentSize/2, segment.y + segmentSize/2, segmentSize/2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+      
+      function drawFood() {
+        for (let food of foodItems) {
+          ctx.fillStyle = food.color;
+          ctx.beginPath();
+          ctx.arc(food.x + food.radius, food.y + food.radius, food.radius, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+      
+      function loop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        updateSnake();
+        drawSnake();
+        drawFood();
+        requestAnimationFrame(loop);
+      }
+      
+      loop();
+    });
+    </script>
+    
+    
+    
+</body>
+</html>
