@@ -136,7 +136,7 @@
   /* ---------- Hero Section (General) ---------- */
   .hero {
     position: relative;
-    height: 100vh;
+    height: 80vh;
     overflow: hidden;
   }
   
@@ -262,48 +262,69 @@
     margin-bottom: 10px;
   }
   
-  /* ---------- Achievements Section ---------- */
-  .achievements {
-    padding: 50px 20px;
-    text-align: center;
-    animation: fadeInUp 1s ease-out;
-    background: var(--bg-color);
-  }
-  
-  .achievements h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5em;
-    margin-bottom: 30px;
-    border-bottom: 2px solid var(--accent-color);
-    display: inline-block;
-    padding-bottom: 10px;
-  }
-  
-  .counters {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin-top: 30px;
-  }
-  
-  .counter {
-    font-size: 2em;
-    font-weight: bold;
-  }
-  
-  .counter p {
-    margin-top: 10px;
-    font-size: 1em;
-    font-weight: normal;
-  }
+/* ---------- Achievements Section ---------- */
+.achievements {
+  padding: 50px 20px;
+  text-align: center;
+  animation: fadeInUp 1s ease-out;
+}
+
+.achievements h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5em;
+  margin-bottom: 30px;
+  border-bottom: 2px solid var(--accent-color);
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.achievement-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.achievement {
+  background: var(--bg-color);
+  border: 1px solid var(--accent-color);
+  border-radius: 8px;
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.achievement:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.achievement i {
+  font-size: 2.5em;
+  color: var(--accent-color);
+  margin-bottom: 10px;
+}
+
+.achievement h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+.achievement p {
+  font-size: 1.1em;
+  color: var(--text-color);
+}
+
   
   /* ---------- Projects Page Specific Styles ---------- */
   
   /* Hero Section for Projects Page */
   .projects-hero {
     position: relative;
-    height: 60vh;
+    height: 80vh;
     overflow: hidden;
   }
   
@@ -568,3 +589,23 @@
     opacity: 0.8;
   }
   
+  /* Projects Grid Layout */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+/* Special placement for the fourth card */
+.project-card.special {
+  grid-column: 2 / 3;
+}
+
+/* (Optional) Adjust container if needed */
+.container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* Keep existing project-card and project-details styling here */

@@ -53,17 +53,24 @@
           <!-- Project Card 2 -->
           <div class="project-card">
             <div class="project-details">
-              <h3>Data Visualization Dashboard</h3>
-              <p>An interactive dashboard built with D3.js and Python, providing real-time analytics and stunning visualizations.</p>
+              <h3>Auto ML pipeline</h3>
+              <p>Designed and implemented Auto ML pipeline that makes predictions on the uploaded data using the vast majority of prediction techniques</p>
               <a href="project2.html" class="btn">View Details</a>
             </div>
           </div>
           <!-- Project Card 3 -->
           <div class="project-card">
             <div class="project-details">
-              <h3>Interactive Web Application</h3>
+              <h3>Interactive Portfolio</h3>
               <p>A full‑stack web application featuring dynamic user interfaces and responsive design to enhance user engagement.</p>
               <a href="project3.html" class="btn">View Details</a>
+            </div>
+          </div>
+          <div class="project-card special">
+            <div class="project-details">
+              <h3>Text-based game</h3>
+              <p>Designed a Python text based game, implemented a story, items, rarities, levels and much more</p>
+              <a href="project4.html" class="btn">View Details</a>
             </div>
           </div>
         </div>
@@ -77,10 +84,8 @@
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <script src="js/main.js"></script>
   
-  <!-- Snake Simulation Script -->
-<!-- Updated Snake Simulation Script -->
-<!-- Updated Snake Simulation Script -->
-<script>
+  <!-- Snake Simulation Script with Score Counter -->
+  <script>
     document.addEventListener('DOMContentLoaded', function(){
       const canvas = document.getElementById("snakeCanvas");
       const ctx = canvas.getContext("2d");
@@ -98,6 +103,7 @@
       const initialLength = 10; // Initial snake length (number of segments)
       const snakeSpeed = 3; // Pixels per frame
       let snake = [];
+      let score = 0; // Score counter
       
       // Initialize snake at canvas center (grid-aligned)
       let startX = Math.floor(canvas.width / 2 / segmentSize) * segmentSize;
@@ -182,6 +188,7 @@
           let distance = Math.sqrt(dx*dx + dy*dy);
           if(distance < segmentSize/2 + food.radius) {
             ateFood = true;
+            score++;  // Increment score when food is eaten
             foodItems.splice(i, 1);
             foodItems.push(spawnFood());
             break;
@@ -212,19 +219,27 @@
         }
       }
       
+      // New function to draw the score on the canvas
+      function drawScore() {
+        ctx.font = "20px Arial";
+        ctx.fillStyle = "#000"; // black text
+        let text = "Score: " + score;
+        let textWidth = ctx.measureText(text).width;
+        ctx.fillText(text, (canvas.width - textWidth) / 2, 30);
+      }
+
+      
       function loop() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         updateSnake();
         drawSnake();
         drawFood();
+        drawScore();  // Display the current score
         requestAnimationFrame(loop);
       }
       
       loop();
     });
-    </script>
-    
-    
-    
+  </script>
 </body>
 </html>

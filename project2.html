@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>House Price Prediction - My Programming Portfolio</title>
+  <title>Auto ML Pipeline - My Programming Portfolio</title>
   <link rel="stylesheet" href="css/styles.css" />
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700&display=swap" rel="stylesheet" />
   <style>
-    /* Additional inline styles for Project 1 page */
+    /* Additional inline styles for Project 2 page */
     .project-detail {
       background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(240,240,240,0.98));
       padding: 50px 70px;
@@ -19,7 +19,7 @@
       margin: 80px auto;
       animation: fadeIn 1.2s ease-out;
     }
-    /* Force all text within project-detail to remain black regardless of theme */
+    /* Force all text to remain black regardless of theme */
     .project-detail,
     .project-detail * {
       color: #000 !important;
@@ -102,47 +102,51 @@
   </header>
   <main>
     <section class="project-detail">
-      <h1>House Price Prediction Model</h1>
+      <h1>Auto ML Pipeline</h1>
       
       <!-- Overview Section -->
       <h2>Overview</h2>
       <p>
-        This project is an end-to-end machine learning pipeline designed to predict house prices using real estate data. It incorporates thorough data cleaning, feature engineering, and the application of multiple regression models to deliver accurate predictions.
+        This project is an end-to-end automated machine learning pipeline that streamlines the entire data science workflow. It covers everything from dataset management and feature detection to model training, evaluation, and deployment—all integrated into a single, efficient framework.
       </p>
       
       <!-- Key Achievements Section -->
       <h2>Key Achievements</h2>
       <ul>
-        <li>Extracted numeric features from complex textual data using regular expressions.</li>
-        <li>Engineered metrics such as price per square meter to boost predictive accuracy.</li>
-        <li>Removed outliers using the IQR method to enhance data quality.</li>
-        <li>Trained and compared various regression models (Linear Regression, Decision Trees, Random Forests) using MSE and R² metrics.</li>
+        <li>Maintained an up-to-date requirements.txt for reproducibility.</li>
+        <li>Implemented an automatic feature detection module to classify features (numerical, categorical).</li>
+        <li>Developed an artifact management module to store and version model artifacts.</li>
+        <li>Designed a feature module with metadata for data preprocessing and modeling.</li>
+        <li>Integrated a comprehensive set of evaluation metrics with custom extensions.</li>
+        <li>Built a core model interface along with extensions for additional algorithms.</li>
+        <li>Created a pipeline evaluation component to calculate performance metrics and select the best model.</li>
+        <li>Developed Streamlit pages for dataset management, model selection, pipeline configuration, and deployment.</li>
+        <li>Added visual output using Matplotlib and Seaborn to compare trained and actual models.</li>
       </ul>
       
       <!-- Technologies Used Section -->
-      <h2>Technologies Used</h2>
-      <ul>
-        <li>Python</li>
-        <li>Pandas &amp; NumPy</li>
-        <li>Scikit-learn</li>
-        <li>Matplotlib</li>
-      </ul>
+      <h2></h2>
+      <div class="project-card">
+        <div class="project-details">
+          <h3>Technologies Used:</h3>
+            <p>Streamlit, Pydantic, Pandas, NumPy, Scikit-learn, Seaborn, Matplotlib</p>
+  
+        </div>
+      </div>
+      
       
       <!-- GitHub Repository Section -->
       <h2>GitHub Repository</h2>
       <p>
-        For the complete project, please visit the <a href="https://github.com/yourusername/house-price-prediction" target="_blank">GitHub repository</a>.
+        To view the complete project, please visit my github repository
       </p>
       
       <div class="project-links">
-        <a href="https://github.com/yourusername/house-price-prediction" class="btn" target="_blank">View on GitHub</a>
+        <a href="https://github.com/ArtiomMatv/AI-predictions" class="btn" target="_blank">View on GitHub</a>
         <a href="projects.html" class="btn">Back to Projects</a>
       </div>
     </section>
   </main>
-  <footer>
-    <p>&copy; 2025 My Programming Portfolio.</p>
-  </footer>
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <script src="js/main.js"></script>
 </body>
