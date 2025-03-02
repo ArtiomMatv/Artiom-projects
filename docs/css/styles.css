@@ -609,3 +609,23 @@
 }
 
 /* Keep existing project-card and project-details styling here */
+
+.resume-download {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.resume-download .btn {
+  background: #ffffff; /* White background */
+  color: #000000;      /* Black text */
+  padding: 15px 35px;
+  border: 1px solid #000;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.resume-download .btn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
