@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Summarization Chatbot - My Programming Portfolio</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700&display=swap" rel="stylesheet" />
+  <style>
+    /* Additional inline styles specific to this project page */
+    .project-detail {
+      background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(240,240,240,0.98));
+      padding: 50px 70px;
+      border-radius: 12px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+      max-width: 900px;
+      margin: 80px auto;
+      animation: fadeIn 1.2s ease-out;
+    }
+    .project-detail,
+    .project-detail * {
+      color: #000 !important;
+    }
+    .project-detail h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3em;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .project-detail h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2em;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 10px;
+      text-align: center;
+    }
+    .project-detail p {
+      font-size: 1.15em;
+      line-height: 1.8;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .project-detail ul {
+      list-style: disc;
+      margin: 0 auto 30px auto;
+      padding-left: 40px;
+      max-width: 600px;
+      text-align: left;
+    }
+    .project-detail ul li {
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    .project-links {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .project-links a.btn {
+      background: #ffffff;
+      color: #000000;
+      padding: 15px 35px;
+      font-size: 1.2em;
+      border: 1px solid #000;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 10px;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .project-links a.btn:hover {
+      transform: scale(1.05);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <button id="theme-toggle">Toggle Theme</button>
+    </nav>
+  </header>
+  <main>
+    <section class="project-detail">
+      <h1>Summarization Chatbot</h1>
+      
+      <!-- Overview Section -->
+      <h2>Overview</h2>
+      <p>
+        A robust chatbot built from scratch that leverages modern natural language processing techniques to generate concise summaries of any provided text. The system combines a Flask-based backend with a React frontend, and utilizes transformer models (powered by Hugging Face's Transformers and PyTorch) to dynamically adjust summary lengths based on the input content.
+      </p>
+      
+      <!-- Key Achievements Section -->
+      <h2>Key Achievements</h2>
+      <ul>
+        <li>Designed and implemented a full-stack solution using Flask for the API and React for the user interface.</li>
+        <li>Integrated advanced transformer models for state-of-the-art text summarization.</li>
+        <li>Implemented dynamic summary generation that adjusts to the length and complexity of the input text.</li>
+        <li>Enabled file uploads and maintained a chat log for enhanced interactivity.</li>
+      </ul>
+      
+        <!-- Technologies Used Section -->
+      <h2></h2>
+      <div class="project-card">
+        <div class="project-details">
+          <h3>Technologies Used:</h3>
+            <li><strong>Backend:</strong> Python, Flask, Flask-CORS, PyTorch, Hugging Face Transformers</li>
+            <li><strong>Frontend:</strong> React, Axios, React Scripts</li>
+            <li><strong>Data &amp; NLP:</strong> CNN/DailyMail dataset, dynamic tokenization, sequence-to-sequence generation</li>
+    
+        </div>
+      </div>
+      
+      <!-- GitHub Repository Section -->
+      <h2>GitHub Repository</h2>
+      <p>
+        View the complete source code and documentation on GitHub.
+      </p>
+      
+      <div class="project-links">
+        <a href="https://github.com/ArtiomMatv/Chat-Bot" class="btn" target="_blank">View on GitHub</a>
+        <a href="projects.html" class="btn">Back to Projects</a>
+      </div>
+    </section>
+  </main>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!-- You can include additional JavaScript here if needed -->
+</body>
+</html>
